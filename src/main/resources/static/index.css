@@ -1,0 +1,16 @@
+
+    
+        /* Modifica color de fondo*/
+
+        .navbar-custom {
+                background-color: #393E46;
+        }
+
+        /* Modifica banda y color de texto*/
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+                color: #FFFF;
+        }
+
+        

@@ -1,0 +1,55 @@
+
+        .sidenav {
+            height: 100%;
+            width: 100px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #00ADB5;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 10px 6px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #1C1B1F;
+            display: block;
+            text-align: center;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .main {
+            margin-left: 110px;
+            font-size: 20px;
+            padding: 0px 20px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        .navbar-custom {
+            background-color: #393E46;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: #FFFF;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+    

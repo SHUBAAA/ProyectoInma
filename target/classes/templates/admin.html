@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <title>Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+        .sidenav {
+            height: 100%;
+            width: 100px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #181818;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 10px 10px 6px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #F5F5F5;
+            display: block;
+            text-align: center;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .main {
+            margin-left: 110px;
+            font-size: 20px;
+            padding: 0px 10px;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+
+        .navbar-custom {
+            background-color: #F6648C;
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: #FFFF;
+        }
+
+        body {
+            background-color: #F5F5F5;
+        }
+    </style>
+
+
+</head>
+
+<body>
+<nav class="navbar navbar-custom py-3">
+    <div class="container">
+        <span class="navbar-brand" style="font-family:arial;">Vista de Administrador</span>
+    </div>
+</nav>
+
+<div class="modal fade" id="popupuser">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Creacion Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/register}" th:object="${usuario}" method="post">
+                    <div class="mb-3">
+                        <label class="col-form-label">RUT</label>
+                        <input type="text" class="form-control" name="rut"
+                               placeholder="Ingrese su RUT" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre"
+                               placeholder="Ingrese su Nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Email</label>
+                        <input type="text" class="form-control" name="email"
+                               placeholder="Ingrese su Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="col-form-label">Contrase&ntilde;a</label>
+                        <input type="password" class="form-control" name="clave"
+                               placeholder="Ingrese su Contrase&ntilde;a" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <select class="form-select" name="roles" aria-label="Default select example">
+                            <option value="CAJERO">Cajero</option>
+                            <option value="BODEGA">Bodega</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary"
+                                style="background-color:#00ADB5; border:#00ADB5; ">Crear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="sidenav d-flex flex-column justify-content-between h-100">
+    <div>
+        <a href="bodega.html" data-bs-toggle="tooltip">
+
+            <i class="bi bi-box2 fs-3"></i>
+            Bodega
+        </a>
+        <a href="caja.html" data-bs-toggle="tooltip">
+
+            <i class="bi bi-cart2 fs-1"></i>
+            Caja
+        </a>
+        <a href="admin.html" data-bs-toggle="tooltip">
+
+            <i class="bi bi-person-square fs-2"></i>
+            Admin
+        </a>
+    </div>
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <button>
+                <i class="bi bi-box-arrow-right fs-2"></i>
+                <h6>Salir</h6>
+            </button>
+        </form>
+    </div>
+
+
+</div>
+
+<div class="main">
+    <h1 class="py-3">Usuarios</h1>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>RUT</th>
+                        <th>Nombre</th>
+                        <th>Rol</th>
+                        <th>Email</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="usuario:${usuarios}">
+                        <td th:text="${usuario.rut}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.roles}"></td>
+                        <td th:text="${usuario.email}"></td>
+
+
+                        <td>
+                            <a th:href="@{/editaruser/} + ${usuario.id}" class="btn btn-secondary"> Modificar
+                                Usuario </a>
+                            <a th:href="@{/eliminaruser/} + ${usuario.id}" class="btn btn-danger"> Quitar </a>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: right; ">
+        <button type="button " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popupuser"
+                style="background-color:#00ADB5; border: #00ADB5;"><span
+                class="bi bi-plus-lg"></span> Nuevo Usuario
+        </button>
+    </div>
+</div>
+</body>
+
+</html>
