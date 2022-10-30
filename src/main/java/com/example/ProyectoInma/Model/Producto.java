@@ -15,7 +15,10 @@ public class Producto {
     @Column(nullable = false)
     private String nombre;
     @Column(nullable = false)
-    private String descripcion;
+    private String fecha;
+
+    @Column(nullable = false)
+    private int precio;
     @Column(nullable = false)
     private int cantidad;
     @Column(nullable = false)
@@ -25,13 +28,12 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, String nombre, String descripcion, int cantidad, String categoria) {
+    public Producto(int id, String nombre, String fecha, int precio, int cantidad, String categoria) {
         this.id = id;
         this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.precio = precio;
         this.cantidad = cantidad;
         this.categoria = categoria;
     }
-
-
 }
