@@ -20,12 +20,12 @@ public class ControladorAdmin {
 
     //se llama al servicio de usuario
     @Autowired
-    private ServicioUsuario userservice;
+    private ServicioUsuario servicioUsuario;
 
     //se obtienen los datos del usuario para poder listarlos
     @GetMapping("/admin")
     public String listar(Model model) {
-        List<Usuario> usuario = userservice.listar();
+        List<Usuario> usuario = servicioUsuario.listar();
         model.addAttribute("usuarios", usuario);
         return "admin";
     }
@@ -34,8 +34,8 @@ public class ControladorAdmin {
     @PostMapping("/register")
     public String guardarUsuario(Usuario usuario, SessionStatus status) {
 
-        usuario.setClave(userservice.cifrarClave(usuario.getClave()));
-        userservice.guardar(usuario);
+        usuario.setClave(servicioUsuario.cifrarClave(usuario.getClave()));
+        servicioUsuario.guardar(usuario);
         status.setComplete();
         return "redirect:/admin";
     }
@@ -43,7 +43,7 @@ public class ControladorAdmin {
     //Esta funcion nos permite editar los usuarios ya ingresados
     @GetMapping("/editaruser/{id}")
     public String editar(@PathVariable Long id, Model model) {
-        Optional<Usuario> usuario = userservice.getID(id);
+        Optional<Usuario> usuario = servicioUsuario.getID(id);
         model.addAttribute("usuario", usuario);
         return "moduser";
     }
@@ -51,7 +51,7 @@ public class ControladorAdmin {
     //esta funcion nos permite borrar usuario registrados
     @GetMapping("/eliminaruser/{id}")
     public String delete(@PathVariable Long id) {
-        userservice.delete(id);
+        servicioUsuario.delete(id);
         return "redirect:/admin";
     }
 }
