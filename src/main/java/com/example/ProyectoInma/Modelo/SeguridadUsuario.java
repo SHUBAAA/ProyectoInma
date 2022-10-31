@@ -25,6 +25,7 @@ public class SeguridadUsuario implements UserDetails {
         return user.getClave();
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.stream(user

@@ -15,15 +15,19 @@ import com.example.ProyectoInma.Repositorio.RepositorioProducto;
 
 @Service
 public class ServicioBoleta {
+    //se llama al repositorio
     @Autowired
-    private RepositorioProducto data;
+    private RepositorioProducto repositorioBoleta;
+
+    //esta funcion calcula el total de la venta
     public int calcularTotal(Boleta b){
         return b.getProductos().stream().mapToInt(p->p.getPrecio()).sum();
         
         
     }
+    //Esta funcion lista los productos de la boleta
     public List<Producto> listarBoleta() {
-        return (List<Producto>) data.findAll();
+        return (List<Producto>) repositorioBoleta.findAll();
     }
     
 }

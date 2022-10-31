@@ -18,9 +18,11 @@ import java.util.Optional;
 @Controller
 public class ControladorAdmin {
 
+    //se llama al servicio de usuario
     @Autowired
     private ServicioUsuario userservice;
 
+    //se obtienen los datos del usuario para poder listarlos
     @GetMapping("/admin")
     public String listar(Model model) {
         List<Usuario> usuario = userservice.listar();
@@ -28,6 +30,7 @@ public class ControladorAdmin {
         return "admin";
     }
 
+    //Esta funcion nos permite registrar usuarios y luego de registro redirecciona a la ruta de admin
     @PostMapping("/register")
     public String guardarUsuario(Usuario usuario, SessionStatus status) {
 
@@ -37,6 +40,7 @@ public class ControladorAdmin {
         return "redirect:/admin";
     }
 
+    //Esta funcion nos permite editar los usuarios ya ingresados
     @GetMapping("/editaruser/{id}")
     public String editar(@PathVariable Long id, Model model) {
         Optional<Usuario> usuario = userservice.getID(id);
@@ -44,6 +48,7 @@ public class ControladorAdmin {
         return "moduser";
     }
 
+    //esta funcion nos permite borrar usuario registrados
     @GetMapping("/eliminaruser/{id}")
     public String delete(@PathVariable Long id) {
         userservice.delete(id);

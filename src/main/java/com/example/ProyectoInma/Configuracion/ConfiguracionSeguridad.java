@@ -18,8 +18,9 @@ import com.example.ProyectoInma.Servicio.JpaUserDetailsService;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class ConfiguracionSeguridad {
+    //aqui se llama al servicio
     private final JpaUserDetailsService jpaUserDetailsService;
-
+    //aqui se encarga del autenticar el inicio de sesion
     public ConfiguracionSeguridad(JpaUserDetailsService jpaUserDetailsService) {
         this.jpaUserDetailsService = jpaUserDetailsService;
     }

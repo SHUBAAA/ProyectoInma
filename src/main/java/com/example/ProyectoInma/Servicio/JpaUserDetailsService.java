@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JpaUserDetailsService implements UserDetailsService {
 
+    //se llama al repositorio del usuario
     @Autowired
     private RepositorioUsuario usuarioRepository;
 

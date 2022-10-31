@@ -18,40 +18,42 @@ import java.util.Optional;
 @Service
 public class ServicioProducto {
 
+    //se llama al repositorio
     @Autowired
-    private RepositorioProducto data;
+    private RepositorioProducto repositorioProducto;
     
 
-
+    //funcion encargada de listar los productos
     public List<Producto> listar() {
-        return (List<Producto>) data.findAll();
+        return (List<Producto>) repositorioProducto.findAll();
     }
 
-
-    public Optional<Producto> listarid(int id) {
-        return data.findById(id);
+    //esta funcion tambien nos permite buscar productos por su id
+    public Optional<Producto> buscarProducto(int id) {
+        return repositorioProducto.findById(id);
     }
 
-
+    //Esta funcion guarda los productos en la base de datos
     public int guardar(Producto p) {
         int respuesta = 0;
-        Producto producto = data.save(p);
+        Producto producto = repositorioProducto.save(p);
         if (!producto.equals(null)) {
             respuesta = 1;
         }
         return respuesta;
     }
 
-
+    //Esta funcion permite eliminar productos
     public void eliminar(int id) {
-        data.deleteById(id);
+        repositorioProducto.deleteById(id);
 
     }
-
+    //esta funcion nos permite agregar los productos a una boleta y luego elimina producto del inventario
     public void agregarABoleta(Producto p,Boleta b) {
         b.agregarProducto(p);
         eliminar(p.getIdProducto());
     }
+    //Esta funcion descuenta a la cantidad de productos, la cantidad agregada a la boleta
     public void descontarCantidad(Producto p, int cantidad){
         p.setCantidad(p.getCantidad()-cantidad);
         
