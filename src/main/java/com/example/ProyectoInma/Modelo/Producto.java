@@ -25,8 +25,8 @@ public class Producto {
     @Column(name = "precio")
     private int precio;
 
-    @Column(name = "fecha_vencimiento")
-    private Date fechaVencimiento;
+    @Column(name = "fecha")
+    private Date fecha;
 
     @Column(name = "categoria")
     private String categoria;
@@ -39,13 +39,13 @@ public class Producto {
 
     }
 
-    public Producto(int idProducto, Boleta boleta, String nombreProducto, int precio, Date fechaVencimiento,
+    public Producto(int idProducto, Boleta boleta, String nombreProducto, int precio, Date fecha,
             String categoria, int cantidad) {
         this.idProducto = idProducto;
         this.boleta = boleta;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
-        this.fechaVencimiento = fechaVencimiento;
+        this.fecha = fecha;
         this.categoria = categoria;
         this.cantidad = cantidad;
     }

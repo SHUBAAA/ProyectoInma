@@ -24,7 +24,7 @@ public class ControladorProducto {
     @Autowired
     private ServicioProducto servicioProducto;
    //Esta funcion lista los productos disponibles
-    @GetMapping("/listar")
+    @GetMapping({"/listar","/"})
     public String listar(Model model) {
         List<Producto> productos = servicioProducto.listar();
         model.addAttribute("productos", productos);
