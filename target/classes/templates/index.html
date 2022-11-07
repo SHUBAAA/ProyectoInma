@@ -23,7 +23,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #181818;
+            background-color: #00ADB5;
             overflow-x: hidden;
             padding-top: 20px;
         }
@@ -32,7 +32,7 @@
             padding: 10px 10px 6px;
             text-decoration: none;
             font-size: 20px;
-            color: #F5F5F5;
+            color: #1C1B1F;
             display: block;
             text-align: center;
         }
@@ -44,7 +44,7 @@
         .main {
             margin-left: 110px;
             font-size: 20px;
-            padding: 0px 10px;
+            padding: 0px 20px;
         }
 
         @media screen and (max-height: 450px) {
@@ -58,7 +58,7 @@
         }
 
         .navbar-custom {
-            background-color: #F6648C;
+            background-color: #393E46;
         }
 
         .navbar-custom .navbar-brand,
@@ -67,7 +67,7 @@
         }
 
         body {
-            background-color: #F5F5F5;
+            background-color: #f5f5f5;
         }
     </style>
 </head>
@@ -133,11 +133,28 @@
 
 <div class="sidenav d-flex flex-column justify-content-between h-100">
 
+
     <div>
+        <a href="main">
+
+            <i class="bi bi-box2 fs-3"></i>
+            Bodega
+        </a>
+        <a href="caja.html">
+
+            <i class="bi bi-cart2 fs-1"></i>
+            Caja
+        </a>
+        <a href="admin">
+
+            <i class="bi bi-person-square fs-2"></i>
+            Admin
+        </a>
     </div>
+
     <div class="container justify-content-between">
         <form th:action="@{/logout}" method="post">
-            <button data-bs-toggle="tooltip">
+            <button>
                 <i class="bi bi-box-arrow-right fs-2"></i>
                 <h6>Salir</h6>
             </button>
