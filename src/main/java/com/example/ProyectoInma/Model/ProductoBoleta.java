@@ -22,7 +22,17 @@ public class ProductoBoleta {
 
     private int precio;
 
+    private int total;
+
+
+
 
     public ProductoBoleta() {
+    }
+
+    public int getTotal() {
+        int suma=0;
+        suma = this.cantidad*this.precio;
+        return suma;
     }
 }

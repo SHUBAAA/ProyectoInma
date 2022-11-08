@@ -156,8 +156,8 @@
                         <th>Nombre Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
-                        <th>Quitar Producto</th>
                         <th>Total</th>
+                        <th>Quitar Producto</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -166,6 +166,8 @@
                     <td th:text="${productoboleta.nombre}"></td>
                     <td th:text="${productoboleta.precio}"></td>
                     <td th:text="${productoboleta.cantidad}"></td>
+                    <td th:text="${productoboleta.getTotal}"></td>
+
 
                     <td> <a th:href="@{/eliminarprodboleta/} + ${productoboleta.id}" class="btn btn-danger"> Eliminar </a></td>
                 </tr>
