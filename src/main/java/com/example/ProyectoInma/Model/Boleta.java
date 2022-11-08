@@ -1,7 +1,6 @@
 package com.example.ProyectoInma.Model;
 
 
-
 import javax.persistence.*;
 
 import java.util.Date;
@@ -28,11 +27,8 @@ public class Boleta {
     private Set<ProductoBoleta> productos = new HashSet<ProductoBoleta>();
 
 
-
-
     public Boleta() {
     }
-
 
 
     public int getId() {
@@ -51,13 +47,13 @@ public class Boleta {
         this.fecha = fecha;
     }
 
-    public int getValorTotal() {
-        int suma = 0;
-        for (ProductoBoleta producto : this.productos){
-            suma = suma + producto.getProducto().getPrecio()*producto.getCantidad();
-        }
-        return suma;
-    }
+    //public int getValorTotal() {
+    // int suma = 0;
+    //  for (ProductoBoleta producto : this.productos){
+    //      suma = suma + producto.getProducto().getPrecio()*producto.getCantidad();
+    //   }
+    //   return suma;
+    // }
 
 
     public int getNroProductos() {

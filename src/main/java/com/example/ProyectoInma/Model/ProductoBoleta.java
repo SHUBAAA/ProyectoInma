@@ -15,19 +15,13 @@ public class ProductoBoleta {
 
     private int cantidad;
 
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    @Column(nullable = false)
+    private String fecha;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_producto",nullable = false,updatable = false)
-    private Producto producto;
+    private String nombre;
 
-    public ProductoBoleta(int id, int cantidad, Date date, Producto producto) {
-        this.id = id;
-        this.cantidad = cantidad;
-        this.date = date;
-        this.producto = producto;
-    }
+    private int precio;
+
 
     public ProductoBoleta() {
     }

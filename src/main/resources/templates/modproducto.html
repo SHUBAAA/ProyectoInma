@@ -39,16 +39,15 @@
             <div class="login-wrap p-4 p-md-5">
                 <form th:action="@{/save}" th:object="${producto}" method="POST">
                     <input type="hidden" th:field="*{id}"/>
-
                     <div class="mb-3">
                         <label class="col-form-label">Nombre</label>
                         <input name="nombre" type="text" th:field="*{nombre}" class="form-control"
                                placeholder="Ingrese Nombre Producto" required/>
                     </div>
                     <div class="mb-3">
-                        <label class="col-form-label">Descripcion</label>
+                        <label class="col-form-label">Fecha</label>
                         <input name="fecha" th:field="*{fecha}" type="text" class="form-control"
-                               placeholder="Ingrese Descripcion Producto" required>
+                               placeholder="Ingrese Fecha Producto" required>
                     </div>
                     <div class="mb-3">
                         <label class="col-form-label">Categoria</label>

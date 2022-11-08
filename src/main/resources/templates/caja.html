@@ -113,7 +113,7 @@
 
     </div>
 
-    <div >
+    <div class="main">
         <div class="container-fluid">
             <table class="table">
                 <thead>
@@ -136,17 +136,7 @@
 
 
                     <td>
-                         <form th:action="@{/añadirBoleta}"  method="POST">
-
-
-                        <input style="max-width: 50px; margin: 0 auto;" type="number"
-                               min="1" value="1" name="cantidad"
-                               class="form-control" placeholder="cantidad" />
-
-
-                            <input type="submit" class="btn btn-primary" style="background-color:#05EA53; border:#05EA53; ">
-
-                    </form>
+                        <a th:href="@{/editarBoleta/} + ${producto.id}" class="btn btn-secondary"> Editar </a>
 
                     </td>
                 </tr>
@@ -162,7 +152,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
+
                         <th>Nombre Producto</th>
                         <th>Precio</th>
                         <th>Cantidad</th>
@@ -170,7 +160,16 @@
                         <th>Total</th>
                     </tr>
                 </thead>
+                <tbody>
+                <tr th:each="productoboleta:${productosboleta}">
 
+                    <td th:text="${productoboleta.nombre}"></td>
+                    <td th:text="${productoboleta.precio}"></td>
+                    <td th:text="${productoboleta.cantidad}"></td>
+
+                    <td> <a th:href="@{/eliminarprodboleta/} + ${productoboleta.id}" class="btn btn-danger"> Eliminar </a></td>
+                </tr>
+                </tbody>
             </table>
 
             <div style="text-align: right; ">

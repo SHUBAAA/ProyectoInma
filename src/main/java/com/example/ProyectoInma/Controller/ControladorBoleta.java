@@ -1,6 +1,7 @@
 package com.example.ProyectoInma.Controller;
 
 import com.example.ProyectoInma.Model.Producto;
+import com.example.ProyectoInma.Model.ProductoBoleta;
 import com.example.ProyectoInma.Servicio.ProductoService;
 import com.example.ProyectoInma.Servicio.ServicioBoleta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +27,19 @@ public class ControladorBoleta {
     public String editar(@PathVariable int id, Model model) {
         Optional<Producto> producto = servicioProd.getID(id);
         model.addAttribute("producto", producto);
-        return "modproducto";
+        return "boleta";
     }
 
-    @PostMapping("/añadirBoleta")
-    public String añadirBoleta(HttpServletRequest request, Model model, @RequestParam("id") int id, @RequestParam("cantidad") int cantidad){
-        servicioBoleta.añadirBoleta(id, cantidad);
+
+    @PostMapping("/saveboleta")
+    public String save(@Validated ProductoBoleta p, Model model) {
+        servicioBoleta.save(p);
         return "redirect:/caja";
     }
 
-    @PostMapping("/save")
-    public String save(@Validated Producto p, Model model) {
-        servicioProd.save(p);
-        return "redirect:/main";
+    @GetMapping("/eliminarprodboleta/{id}")
+    public String delete(@PathVariable int id) {
+        servicioBoleta.delete(id);
+        return "redirect:/caja";
     }
 }
