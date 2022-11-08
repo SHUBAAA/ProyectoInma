@@ -42,4 +42,9 @@ public class ControladorBoleta {
         servicioBoleta.delete(id);
         return "redirect:/caja";
     }
+    @GetMapping("/borrarTodo")
+    public String borrarTodo() {
+        servicioBoleta.borrarTodo();
+        return "redirect:/caja";
+    }
 }

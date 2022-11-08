@@ -26,5 +26,8 @@ public class ServicioBoleta {
     public void delete(int id) {
         dataprodboleta.deleteById(id);
     }
+    public void borrarTodo(){
+        dataprodboleta.deleteAll();
+    }
 }
 
