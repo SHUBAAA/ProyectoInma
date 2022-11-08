@@ -5,7 +5,7 @@ import com.example.ProyectoInma.Servicio.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -41,8 +41,10 @@ public class SecurityConfig {
    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/main").hasAnyAuthority("CAJERO", "BODEGA", "ADMIN")
-                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
+                .antMatchers("/","/main").hasAnyAuthority("BODEGA", "ADMIN")
+                .antMatchers("/caja").hasAnyAuthority("ADMIN", "CAJERO")
+                .antMatchers("/admin").hasAnyAuthority("ADMIN")
+                .antMatchers("/registrar").hasAuthority("ADMIN")
                 .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
                 .antMatchers("/delete/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()

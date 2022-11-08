@@ -11,10 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.support.SessionStatus;
+
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Controller
 public class ControladorAdmin {
@@ -22,46 +23,40 @@ public class ControladorAdmin {
     @Autowired
     private UserService service;
 
-    @GetMapping("")
-    public String viewHomePage() {
-        return "index";
-    }
 
-    @GetMapping("/register")
+    @GetMapping("/registrar")
     public String showRegistrationForm(Model model) {
+        List<Rol> listRoles = service.listRoles();
         model.addAttribute("user", new User());
-
-        return "signup_form";
+        model.addAttribute("listRoles", listRoles);
+        return "registrar";
     }
 
-    @PostMapping("/process_register")
-    public String processRegister(User user) {
-        service.registerDefaultUser(user);
-
-        return "register_success";
+    @PostMapping("/guardar")
+    public String saveUser(User user) {
+        service.save(user);
+        return "redirect:/admin";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/admin")
     public String listUsers(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);
-
-        return "users";
+        return "admin";
     }
 
-    @GetMapping("/users/edit/{id}")
+    @GetMapping("/editaruser/{id}")
     public String editUser(@PathVariable("id") Long id, Model model) {
-        User user = service.get(id);
+        Optional<User> user = service.getID(id);
         List<Rol> listRoles = service.listRoles();
         model.addAttribute("user", user);
         model.addAttribute("listRoles", listRoles);
-        return "user_form";
+        return "modusuario";
     }
 
-    @PostMapping("/users/save")
-    public String saveUser(User user) {
-        service.save(user);
-
-        return "redirect:/users";
+    @GetMapping("/eliminaruser/{id}")
+    public String delete(@PathVariable Long id) {
+        service.delete(id);
+        return "redirect:/admin";
     }
 }
