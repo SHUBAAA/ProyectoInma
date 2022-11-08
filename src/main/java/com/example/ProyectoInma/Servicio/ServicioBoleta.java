@@ -1,6 +1,7 @@
 package com.example.ProyectoInma.Servicio;
 
 import com.example.ProyectoInma.Model.Boleta;
+import com.example.ProyectoInma.Model.Producto;
 import com.example.ProyectoInma.Model.ProductoBoleta;
 import com.example.ProyectoInma.Repository.RepositorioBoleta;
 import com.example.ProyectoInma.Repository.RepositorioProductoBoleta;
@@ -29,6 +30,9 @@ public class ServicioBoleta {
         return repositorioBoleta.save(boleta);
 
 
+    }
+    public void save(Producto p) {
+        .save(p);
     }
 }
 

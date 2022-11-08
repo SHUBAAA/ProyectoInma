@@ -17,8 +17,9 @@ public class ProyectoInma {
         SpringApplication.run(ProyectoInma.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(UserRepository usuarios, PasswordEncoder encoder) {         return args -> {              usuarios.save(new User("manolo@gmail.com", encoder.encode("a"), "11.222.333-4", "Manolo"));          };     }
+    @Bean     CommandLineRunner commandLineRunner(UserRepository usuarios, PasswordEncoder encoder) {
+        return args -> {
 
+    };     }
 
 }

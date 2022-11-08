@@ -136,7 +136,7 @@
 
 
                     <td>
-                         <form th:action="/añadirBoleta"  method="POST">
+                         <form th:action="@{/añadirBoleta}"  method="POST">
 
 
                         <input style="max-width: 50px; margin: 0 auto;" type="number"
@@ -170,28 +170,7 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">001</th>
-                        <td>Producto</td>
-                        <td>$9999</td>
-                        <td>999</td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Quitar</button>
-                        </td>
-                        <td>$999999</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">002</th>
-                        <td>Producto</td>
-                        <td>$9999</td>
-                        <td>999</td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Quitar</button>
-                        </td>
-                        <td>$9999999</td>
-                    </tr>
-                </tbody>
+
             </table>
 
             <div style="text-align: right; ">
