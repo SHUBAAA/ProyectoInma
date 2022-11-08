@@ -4,6 +4,7 @@ package com.example.ProyectoInma.Model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -14,8 +15,8 @@ public class Producto {
     private int id;
     @Column(nullable = false)
     private String nombre;
-    @Column(nullable = false)
-    private String fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha = new Date(System.currentTimeMillis());
 
     @Column(nullable = false)
     private int precio;
@@ -28,10 +29,9 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, String nombre, String fecha, int precio, int cantidad, String categoria) {
+    public Producto(int id, String nombre, int precio, int cantidad, String categoria) {
         this.id = id;
         this.nombre = nombre;
-        this.fecha = fecha;
         this.precio = precio;
         this.cantidad = cantidad;
         this.categoria = categoria;

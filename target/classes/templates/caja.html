@@ -169,10 +169,13 @@
                     <td th:text="${productoboleta.getTotal}"></td>
 
 
+
                     <td> <a th:href="@{/eliminarprodboleta/} + ${productoboleta.id}" class="btn btn-danger"> Eliminar </a></td>
                 </tr>
                 </tbody>
+
             </table>
+
 
             <div style="text-align: right; ">
                 <a th:href="@{/borrarTodo}" class="btn btn-danger"> limpiar </a>
