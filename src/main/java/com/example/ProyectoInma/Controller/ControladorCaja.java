@@ -24,6 +24,8 @@ public class ControladorCaja {
     public String listar(Model model) {
         List<Producto> productos = productoService.mostrar();
         List<ProductoBoleta> productosboleta = servicioBoleta.mostrar();
+        Boleta b=new Boleta();
+        b.setValorTotal(productosboleta.stream().mapToInt(p->p.getPrecio()).sum());
         model.addAttribute("productosboleta", productosboleta);
         model.addAttribute("productos", productos);
         return "caja";
