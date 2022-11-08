@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,19 +25,13 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public void registerDefaultUser(User user) {
-        Rol roleUser = roleRepo.findByName("User");
-        user.addRole(roleUser);
-        encodePassword(user);
-        userRepo.save(user);
-    }
 
     public List<User> listAll() {
         return userRepo.findAll();
     }
 
-    public User get(Long id) {
-        return userRepo.findById(id).get();
+    public Optional<User> getID(Long id) {
+        return userRepo.findById(id);
     }
 
     public List<Rol> listRoles() {
@@ -48,9 +43,14 @@ public class UserService {
         userRepo.save(user);
     }
 
+    public void delete(Long id) {
+        userRepo.deleteById(id);
+    }
     private void encodePassword(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
     }
+
+
 
 }

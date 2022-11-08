@@ -79,53 +79,6 @@
     </div>
 </nav>
 
-<div class="modal fade" id="popupuser">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Creacion Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form th:action="@{/register}" th:object="${usuario}" method="post">
-                    <div class="mb-3">
-                        <label class="col-form-label">RUT</label>
-                        <input type="text" class="form-control" name="rut"
-                               placeholder="Ingrese su RUT" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="col-form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre"
-                               placeholder="Ingrese su Nombre" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="col-form-label">Email</label>
-                        <input type="text" class="form-control" name="email"
-                               placeholder="Ingrese su Email" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="col-form-label">Contrase&ntilde;a</label>
-                        <input type="password" class="form-control" name="clave"
-                               placeholder="Ingrese su Contrase&ntilde;a" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <select class="form-select" name="roles" aria-label="Default select example">
-                            <option value="CAJERO">Cajero</option>
-                            <option value="BODEGA">Bodega</option>
-                        </select>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary"
-                                style="background-color:#00ADB5; border:#00ADB5; ">Crear
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="sidenav d-flex flex-column justify-content-between h-100">
     <div>
@@ -174,18 +127,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="usuario:${usuarios}">
-                        <td th:text="${usuario.rut}"></td>
-                        <td th:text="${usuario.nombre}"></td>
-                        <td th:text="${usuario.roles}"></td>
-                        <td th:text="${usuario.email}"></td>
-
-
+                    <tr th:each="user: ${listUsers}">
+                        <td th:text="${user.rut}"></td>
+                        <td th:text="${user.nombre}"></td>
+                        <td th:text="${user.roles}"></td>
+                        <td th:text="${user.email}"></td>
                         <td>
-                            <a th:href="@{/editaruser/} + ${usuario.id}" class="btn btn-secondary"> Modificar
+                            <a th:href="@{/editaruser/} + ${user.id}" class="btn btn-secondary"> Modificar
                                 Usuario </a>
-                            <a th:href="@{/eliminaruser/} + ${usuario.id}" class="btn btn-danger"> Quitar </a>
-
+                            <a th:href="@{/eliminaruser/} + ${user.id}" class="btn btn-danger"> Quitar </a>
                         </td>
                     </tr>
                     </tbody>
@@ -194,10 +144,9 @@
         </div>
     </div>
     <div style="text-align: right; ">
-        <button type="button " class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#popupuser"
-                style="background-color:#00ADB5; border: #00ADB5;"><span
+        <a  th:href="@{/registrar}" type="button" class="btn btn-primary" style="background-color:#00ADB5; border: #00ADB5;"><span
                 class="bi bi-plus-lg"></span> Nuevo Usuario
-        </button>
+        </a>
     </div>
 </div>
 </body>

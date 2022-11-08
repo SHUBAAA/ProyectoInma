@@ -11,6 +11,7 @@ import java.util.Set;
 @Data
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,11 +22,22 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    @Column(name = "first_name", nullable = false, length = 20)
-    private String firstName;
+    @Column(name = "rut", nullable = false, length = 20)
+    private String rut;
 
-    @Column(name = "last_name", nullable = false, length = 20)
-    private String lastName;
+    @Column(name = "nombre", nullable = false, length = 20)
+    private String nombre;
+
+    public User() {
+    }
+
+    public User(String email, String password, String rut, String nombre) {
+
+        this.email = email;
+        this.password = password;
+        this.rut = rut;
+        this.nombre = nombre;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -33,8 +45,19 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+
+
     private Set<Rol> roles = new HashSet<>();
-    public void addRole(Rol rol) {
-        this.roles.add(rol);
+
+    public Set<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Rol> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Rol role) {
+        this.roles.add(role);
     }
 }
