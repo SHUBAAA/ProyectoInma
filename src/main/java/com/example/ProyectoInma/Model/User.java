@@ -31,6 +31,12 @@ public class User {
     public User() {
     }
 
+    public User(String email, String password, String rut, String nombre) {
+        this.email = email;
+        this.password = password;
+        this.rut = rut;
+        this.nombre = nombre;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
