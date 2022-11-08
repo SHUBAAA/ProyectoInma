@@ -1,14 +1,16 @@
 package com.example.ProyectoInma.config;
 
 
-import com.example.ProyectoInma.Servicio.JpaUserDetailsService;
+import com.example.ProyectoInma.Servicio.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -16,38 +18,45 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final JpaUserDetailsService jpaUserDetailsService;
-
-    public SecurityConfig(JpaUserDetailsService jpaUserDetailsService) {
-        this.jpaUserDetailsService = jpaUserDetailsService;
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new CustomUserDetailsService();
     }
 
-    // Filtro de seguridad
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                // No permite solicitudes a menos que el usuario esté registrado
-                .authorizeRequests(consulta -> consulta
-                        // Se añaden excepciones en mvc matchers, donde se podrá ingresar sin autenticación
-                        .mvcMatchers().permitAll()
-                        .anyRequest().authenticated())
-                // Así spring security identifica como obtener los datos de los usuarios
-                .userDetailsService(jpaUserDetailsService)
-                .headers(headers -> headers.frameOptions().sameOrigin())
-                // Autenticación básica HTTP, puede ser así (logeo básico) o un form de inicio de sesión
-                .formLogin((formulario) -> formulario
-                        // permite acceso a todos
-                        .loginPage("/login")
-                        .permitAll()
-                )
-                .logout((cerrarSesion) -> cerrarSesion.permitAll())
-                .build();
-    }
-
-    //Cifrar contraseña
-    @Bean
-    PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
+
+
+   @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/","/main").hasAnyAuthority("CAJERO", "BODEGA", "ADMIN")
+                .antMatchers("/new").hasAnyAuthority("ADMIN", "CREATOR")
+                .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
+                .antMatchers("/delete/**").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .usernameParameter("email")
+                .defaultSuccessUrl("/main")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/login").permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403");
+       return http.build();
+   }
 
 }

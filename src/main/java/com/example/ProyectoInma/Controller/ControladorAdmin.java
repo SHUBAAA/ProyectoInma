@@ -2,6 +2,7 @@ package com.example.ProyectoInma.Controller;
 
 
 
+import com.example.ProyectoInma.Model.Rol;
 import com.example.ProyectoInma.Model.User;
 import com.example.ProyectoInma.Servicio.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,34 +20,48 @@ import java.util.Optional;
 public class ControladorAdmin {
 
     @Autowired
-    private UserService userservice;
+    private UserService service;
 
-    @GetMapping("/admin")
-    public String listar(Model model) {
-        List<User> usuario = userservice.listar();
-        model.addAttribute("usuarios", usuario);
-        return "admin";
+    @GetMapping("")
+    public String viewHomePage() {
+        return "index";
     }
 
-    @PostMapping("/register")
-    public String guardarUsuario(User usuario, SessionStatus status) {
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
 
-        usuario.setClave(userservice.cifrarClave(usuario.getClave()));
-        userservice.guardar(usuario);
-        status.setComplete();
-        return "redirect:/admin";
+        return "signup_form";
     }
 
-    @GetMapping("/editaruser/{id}")
-    public String editar(@PathVariable Long id, Model model) {
-        Optional<User> usuario = userservice.getID(id);
-        model.addAttribute("usuario", usuario);
-        return "moduser";
+    @PostMapping("/process_register")
+    public String processRegister(User user) {
+        service.registerDefaultUser(user);
+
+        return "register_success";
     }
 
-    @GetMapping("/eliminaruser/{id}")
-    public String delete(@PathVariable Long id) {
-        userservice.delete(id);
-        return "redirect:/admin";
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<User> listUsers = service.listAll();
+        model.addAttribute("listUsers", listUsers);
+
+        return "users";
+    }
+
+    @GetMapping("/users/edit/{id}")
+    public String editUser(@PathVariable("id") Long id, Model model) {
+        User user = service.get(id);
+        List<Rol> listRoles = service.listRoles();
+        model.addAttribute("user", user);
+        model.addAttribute("listRoles", listRoles);
+        return "user_form";
+    }
+
+    @PostMapping("/users/save")
+    public String saveUser(User user) {
+        service.save(user);
+
+        return "redirect:/users";
     }
 }

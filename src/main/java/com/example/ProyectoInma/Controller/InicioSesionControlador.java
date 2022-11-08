@@ -1,19 +1,30 @@
 package com.example.ProyectoInma.Controller;
 
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.net.Authenticator;
 
 @Controller
-public class InicioSesionControlador {
+public class InicioSesionControlador implements WebMvcConfigurer {
 
     @GetMapping("/login")
     public String iniciarSesion() {
-        return "login";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return "login";
+        }
+        return "redirect:/";
     }
 
-    @GetMapping("/info-usuario")
-    public String userInfo() {
-        return "info-usuario";
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/403").setViewName("403");
     }
 }

@@ -1,44 +1,56 @@
 package com.example.ProyectoInma.Servicio;
 
 
+import com.example.ProyectoInma.Model.Rol;
 import com.example.ProyectoInma.Model.User;
+import com.example.ProyectoInma.Repository.RepoRol;
 import com.example.ProyectoInma.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
 public class UserService {
 
     @Autowired
-    private UserRepository dataUser;
+    private UserRepository userRepo;
 
-    public List<User> listar() {
-        return (List<User>) dataUser.findAll();
+    @Autowired
+    RepoRol roleRepo;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
+    public void registerDefaultUser(User user) {
+        Rol roleUser = roleRepo.findByName("User");
+        user.addRole(roleUser);
+        encodePassword(user);
+        userRepo.save(user);
     }
 
-
-    public Optional<User> getID(Long id) {
-        return dataUser.findById(id);
+    public List<User> listAll() {
+        return userRepo.findAll();
     }
 
-
-    public void guardar(User u) {
-        dataUser.save(u);
+    public User get(Long id) {
+        return userRepo.findById(id).get();
     }
 
-    public void delete(Long id) {
-        dataUser.deleteById(id);
+    public List<Rol> listRoles() {
+        return roleRepo.findAll();
     }
 
+    public void save(User user) {
+        encodePassword(user);
+        userRepo.save(user);
+    }
 
-    public String cifrarClave(String clave) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder.encode(clave);
+    private void encodePassword(User user) {
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
     }
 
 }

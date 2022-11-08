@@ -21,7 +21,6 @@ public class ProyectoInma {
 		return args -> {
 
 
-			usuarios.save(new User("a", encoder.encode("a"), "ADMIN","11.222.333-4","ottito@gmail.com"));
 
 		};
 	}
