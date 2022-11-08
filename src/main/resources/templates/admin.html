@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
@@ -82,21 +83,24 @@
 
 <div class="sidenav d-flex flex-column justify-content-between h-100">
     <div>
-        <a href="main">
+        <div sec:authorize="hasAnyRole('BODEGA', 'ADMIN')">
+            <a href="main">
 
-            <i class="bi bi-box2 fs-3"></i>
-            Bodega
-        </a>
-        <a href="caja">
+                <i class="bi bi-box2 fs-3"></i>
+                Bodega
+            </a>
+        </div>
+            <a href="caja">
 
-            <i class="bi bi-cart2 fs-1"></i>
-            Caja
-        </a>
-        <a href="admin">
-
-            <i class="bi bi-person-square fs-2"></i>
-            Admin
-        </a>
+                <i class="bi bi-cart2 fs-1"></i>
+                Caja
+            </a>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a href="admin">
+                <i class="bi bi-person-square fs-2"></i>
+                Admin
+            </a>
+        </div>
     </div>
     <div class="container justify-content-between">
         <form th:action="@{/logout}" method="post">
@@ -144,7 +148,8 @@
         </div>
     </div>
     <div style="text-align: right; ">
-        <a  th:href="@{/registrar}" type="button" class="btn btn-primary" style="background-color:#00ADB5; border: #00ADB5;"><span
+        <a th:href="@{/registrar}" type="button" class="btn btn-primary"
+           style="background-color:#00ADB5; border: #00ADB5;"><span
                 class="bi bi-plus-lg"></span> Nuevo Usuario
         </a>
     </div>

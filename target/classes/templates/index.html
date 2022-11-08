@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8" content="width=device-width, initial-scale=1">
@@ -135,22 +136,28 @@
 
 
     <div>
-        <a href="main">
+        <div sec:authorize="hasAnyAuthority('BODEGA', 'ADMIN')">
+            <a href="main">
 
-            <i class="bi bi-box2 fs-3"></i>
-            Bodega
-        </a>
-        <a href="caja">
+                <i class="bi bi-box2 fs-3"></i>
+                Bodega
+            </a>
+        </div>
+        <div sec:authorize="hasAnyAuthority('ADMIN','CAJERO')">
+            <a href="caja">
 
-            <i class="bi bi-cart2 fs-1"></i>
-            Caja
-        </a>
-        <a href="admin">
-
-            <i class="bi bi-person-square fs-2"></i>
-            Admin
-        </a>
+                <i class="bi bi-cart2 fs-1"></i>
+                Caja
+            </a>
+        </div>
+        <div sec:authorize="hasAuthority('ADMIN')">
+            <a sec:authorize="hasAuthority('ADMIN')" href="admin">
+                <i class="bi bi-person-square fs-2"></i>
+                Admin
+            </a>
+        </div>
     </div>
+
 
     <div class="container justify-content-between">
         <form th:action="@{/logout}" method="post">
