@@ -2,7 +2,10 @@ package com.example.ProyectoInma.Repository;
 
 
 import com.example.ProyectoInma.Model.Boleta;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface RepoBoleta extends CrudRepository<Boleta,Integer> {
+@Repository
+public interface RepoBoleta extends JpaRepository<Boleta,Integer> {
+
 }
