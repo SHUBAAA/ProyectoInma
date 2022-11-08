@@ -26,6 +26,10 @@ public class ProductoService {
         return dataProducto.findById(id);
     }
 
+    public Producto getProductoById(int id){
+        return dataProducto.findById(id).get();
+}
+
 
     public void save(Producto p) {
         dataProducto.save(p);

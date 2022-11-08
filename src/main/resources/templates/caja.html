@@ -79,13 +79,7 @@
             <span class="navbar-brand mb-0 px-3" style="font-family:arial;">Vender Producto</span>
         </div>
     </nav>
-    <nav class="navbar bg-light">
-        <div class="container">
-            <button type="button button" class="btn btn-primary"
-                style="background-color:#FFFFFF; border-color: #000000; color: #101540; font-size: large;">Filtro <span
-                    class="bi bi-chevron-down"></span> </button>
-        </div>
-    </nav>
+
 
     <div class="sidenav d-flex flex-column justify-content-between h-100">
         <div>
@@ -142,9 +136,18 @@
 
 
                     <td>
-                        <button type="button" class="btn btn-success" data-dismiss="alert">
-                            Vender
-                        </button>
+                         <form th:action="/añadirBoleta"  method="POST">
+
+
+                        <input style="max-width: 50px; margin: 0 auto;" type="number"
+                               min="1" value="1" name="cantidad"
+                               class="form-control" placeholder="cantidad" />
+
+
+                            <input type="submit" class="btn btn-primary" style="background-color:#05EA53; border:#05EA53; ">
+
+                    </form>
+
                     </td>
                 </tr>
                 </tbody>
