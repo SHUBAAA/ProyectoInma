@@ -11,6 +11,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.*;
+
 //DataSQL en resources
 @SpringBootApplication
 public class ProyectoInma {
@@ -27,7 +30,7 @@ public class ProyectoInma {
             roles.save(new Rol("ADMIN"));
             roles.save(new Rol("CAJERO"));
             roles.save(new Rol("BODEGA"));
-            usuarios.save(new User("manolo@gmail.com", encoder.encode("a"), "11.222.333-4", "Manolo"));
+            usuarios.save(new User("manolo@gmail.com", encoder.encode("a"), "11.222.333-4", "Manolo", Collections.singletonList(roles.findById(1).get())));
 
         };
 

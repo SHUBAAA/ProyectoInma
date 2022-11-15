@@ -3,7 +3,9 @@ package com.example.ProyectoInma.Model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -31,12 +33,14 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password, String rut, String nombre) {
+    public User(String email, String password, String rut, String nombre, List<Rol> roles) {
         this.email = email;
         this.password = password;
         this.rut = rut;
         this.nombre = nombre;
+        this.roles = roles;
     }
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -46,15 +50,9 @@ public class User {
     )
 
 
-    private Set<Rol> roles = new HashSet<>();
+    private List<Rol> roles = new ArrayList<>();
 
-    public Set<Rol> getRoles() {
-        return roles;
-    }
 
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
-    }
 
     public void addRole(Rol role) {
         this.roles.add(role);
