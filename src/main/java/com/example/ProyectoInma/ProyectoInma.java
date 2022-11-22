@@ -18,8 +18,6 @@ import java.util.*;
 @SpringBootApplication
 public class ProyectoInma {
 
-    @Autowired
-    RepoRol roleRepo;
     public static void main(String[] args) {
         SpringApplication.run(ProyectoInma.class, args);
     }
