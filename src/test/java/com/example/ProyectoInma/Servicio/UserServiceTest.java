@@ -99,15 +99,15 @@ class UserServiceTest {
 
     @Test
     public void testCreacionRoles() {
-        Rol user = new Rol("User");
         Rol admin = new Rol("Admin");
-        Rol customer = new Rol("Customer");
+        Rol bodega = new Rol("Bodega");
+        Rol cajero = new Rol("Cajero");
 
-        reporol.saveAll(List.of(user, admin, customer));
+        reporol.saveAll(List.of(admin, bodega, cajero));
 
-        List<Rol> listRoles = reporol.findAll();
+        List<Rol> listaRoles = reporol.findAll();
 
-        assertThat(listRoles.size()).isEqualTo(3);
+        assertThat(listaRoles.size()).isEqualTo(3);
     }
 
     @Test
