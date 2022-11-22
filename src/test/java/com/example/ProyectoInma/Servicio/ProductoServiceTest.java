@@ -59,7 +59,7 @@ class ProductoServiceTest {
 
     }
     @ParameterizedTest
-    @ValueSource(ints = {2, 3, 4, 5})
+    @ValueSource(ints = {1, 2, 3, 4})
     @Rollback(false)
     @Order(3)
     @DisplayName("Test para editar un producto")
