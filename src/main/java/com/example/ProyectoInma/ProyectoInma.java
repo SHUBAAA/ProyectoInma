@@ -24,16 +24,5 @@ public class ProyectoInma {
         SpringApplication.run(ProyectoInma.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(RepoRol roles,UserRepository usuarios, PasswordEncoder encoder) {
-        return args -> {
-            roles.save(new Rol("ADMIN"));
-            roles.save(new Rol("CAJERO"));
-            roles.save(new Rol("BODEGA"));
-            usuarios.save(new User("manolo@gmail.com", encoder.encode("a"), "11.222.333-4", "Manolo", Collections.singletonList(roles.findById(1).get())));
 
-        };
-
-
-    }
 }

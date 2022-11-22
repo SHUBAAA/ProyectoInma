@@ -41,6 +41,12 @@ public class User {
         this.roles = roles;
     }
 
+    public User(String email, String password, String rut, String nombre) {
+        this.email = email;
+        this.password = password;
+        this.rut = rut;
+        this.nombre = nombre;
+    }
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -51,6 +57,7 @@ public class User {
 
 
     private List<Rol> roles = new ArrayList<>();
+
 
 
 
