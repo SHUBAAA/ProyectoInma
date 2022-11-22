@@ -16,7 +16,7 @@ public class ProductoBoleta {
     private int cantidad;
 
     @Column(nullable = false)
-    private String fecha;
+    private Date fecha;
 
     private String nombre;
 
@@ -34,5 +34,12 @@ public class ProductoBoleta {
         int suma=0;
         suma = this.cantidad*this.precio;
         return suma;
+    }
+
+    public ProductoBoleta(int cantidad, String nombre, int precio) {
+        this.cantidad = cantidad;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.fecha = new Date(System.currentTimeMillis());
     }
 }
