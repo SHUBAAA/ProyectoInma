@@ -14,10 +14,8 @@
             crossorigin="anonymous"></script>
 
     <style>
-
-
         .navbar-custom {
-            background-color: #F6648C;
+            background-color: #393E46;
         }
 
         .navbar-custom .navbar-brand,
@@ -43,10 +41,10 @@
         <div class="col-md-6 5">
             <div class="login-wrap p-4 p-md-5">
                 <form th:action="@{/login}" method="post">
-                    <label class="label">Nombre</label>
+                    <label class="label">Correo</label>
                     <div class="form-group">
-                        <input type="text" class="form-control rounded-left" name="username"
-                               placeholder="Ingrese su Nombre" required/>
+                        <input type="email" class="form-control rounded-left" name="email"
+                               placeholder="Ingrese su Email" required/>
                     </div>
                     <p></p>
 

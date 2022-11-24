@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Añadir a una boleta</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"/>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+          integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+          crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+          integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+          crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  <style>
+    .navbar-custom {
+      background-color: #393E46;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-text {
+      color: #FFFF;
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-custom">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 px-5">Añadir a una boleta</span>
+
+  </div>
+
+</nav>
+
+<div class="container justify-content-center ">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="login-wrap p-4 p-md-5">
+        <form th:action="@{/saveboleta}" th:object="${producto}" method="POST">
+          <input type="hidden" th:field="*{id}"/>
+
+          <div class="mb-3">
+            <label class="col-form-label">Nombre</label>
+            <input name="nombre" type="text" th:field="*{nombre}" class="form-control"
+                   placeholder="Ingrese Nombre Producto"   readonly="readonly" required/>
+          </div>
+
+
+          <div class="mb-3">
+            <label class="col-form-label">Precio</label>
+            <input name="precio" type="text" th:field="*{precio}" class="form-control"
+                   placeholder="Ingrese Cantidad"  readonly="readonly" required>
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Cantidad</label>
+            <input name="cantidad" type="text" th:field="*{cantidad}" class="form-control"
+                   placeholder="Ingrese Cantidad"  required>
+          </div>
+
+
+          <div class="modal-footer ">
+            <a href="/caja" type="button" class="btn btn-danger">Cancelar</a>
+            <button type="submit" class="btn btn-primary"
+                    style="background-color:#00ADB5; border:#F6648C;">Aceptar
+            </button>
+
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -15,7 +15,7 @@
 
     <style>
         .navbar-custom {
-            background-color: #F6648C;
+            background-color: #393E46;
         }
 
         .navbar-custom .navbar-brand,
@@ -38,23 +38,13 @@
         <div class="col-md-6 col-lg-5">
             <div class="login-wrap p-4 p-md-5">
                 <form th:action="@{/save}" th:object="${producto}" method="POST">
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input type="text" name="id" th:field="*{id}" class="form-control"
-                               readonly="readonly">
-                    </div>
-
-
+                    <input type="hidden" th:field="*{id}"/>
                     <div class="mb-3">
                         <label class="col-form-label">Nombre</label>
                         <input name="nombre" type="text" th:field="*{nombre}" class="form-control"
                                placeholder="Ingrese Nombre Producto" required/>
                     </div>
-                    <div class="mb-3">
-                        <label class="col-form-label">Descripcion</label>
-                        <input name="fecha" th:field="*{fecha}" type="text" class="form-control"
-                               placeholder="Ingrese Descripcion Producto" required>
-                    </div>
+
                     <div class="mb-3">
                         <label class="col-form-label">Categoria</label>
                         <input name="categoria" type="text" th:field="*{categoria}" class="form-control"
@@ -75,7 +65,7 @@
                     <div class="modal-footer ">
                         <a href="/main" type="button" class="btn btn-danger">Cancelar</a>
                         <button type="submit" class="btn btn-primary"
-                                style="background-color:#F6648C; border:#F6648C;">Aceptar
+                                style="background-color:#00ADB5; border:#F6648C;">Aceptar
                         </button>
 
                     </div>
