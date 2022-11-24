@@ -15,8 +15,8 @@ public class ProductoBoleta {
 
     private int cantidad;
 
-    @Column(nullable = false)
-    private Date fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha = new Date(System.currentTimeMillis());
 
     private String nombre;
 
