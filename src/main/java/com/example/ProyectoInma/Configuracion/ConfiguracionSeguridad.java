@@ -1,12 +1,16 @@
-package com.example.ProyectoInma.config;
+package com.example.ProyectoInma.Configuracion;
 
 
+
+<<<<<<< HEAD:src/main/java/com/example/ProyectoInma/Configuracion/ConfiguracionSeguridad.java
+=======
 import com.example.ProyectoInma.Model.Rol;
 import com.example.ProyectoInma.Model.User;
 import com.example.ProyectoInma.Repository.RepoRol;
 import com.example.ProyectoInma.Repository.UserRepository;
 import com.example.ProyectoInma.Servicio.CustomUserDetailsService;
 import org.springframework.boot.CommandLineRunner;
+>>>>>>> ayuda:src/main/java/com/example/ProyectoInma/config/SecurityConfig.java
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -19,16 +23,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+<<<<<<< HEAD:src/main/java/com/example/ProyectoInma/Configuracion/ConfiguracionSeguridad.java
+import com.example.ProyectoInma.Servicio.JpaUserDetailsService;
+=======
 import java.util.Collections;
+>>>>>>> ayuda:src/main/java/com/example/ProyectoInma/config/SecurityConfig.java
 
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+<<<<<<< HEAD:src/main/java/com/example/ProyectoInma/Configuracion/ConfiguracionSeguridad.java
+public class ConfiguracionSeguridad {
+    //aqui se llama al servicio
+    private final JpaUserDetailsService jpaUserDetailsService;
+    //aqui se encarga del autenticar el inicio de sesion
+    public ConfiguracionSeguridad(JpaUserDetailsService jpaUserDetailsService) {
+        this.jpaUserDetailsService = jpaUserDetailsService;
+=======
 public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return new CustomUserDetailsService();
+>>>>>>> ayuda:src/main/java/com/example/ProyectoInma/config/SecurityConfig.java
     }
 
     @Bean
