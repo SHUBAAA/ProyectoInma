@@ -13,11 +13,6 @@ import java.util.List;
 public class ServicioBoleta {
     @Autowired
     private RepositorioProductoBoleta dataprodboleta;
-    public int Total(List<ProductoBoleta> boleta){
-        return boleta.stream().mapToInt(p->p.getPrecio()*p.getCantidad()).sum();
-
-
-    }
 
 
     public void save(ProductoBoleta p) {
@@ -25,7 +20,7 @@ public class ServicioBoleta {
     }
 
     public List<ProductoBoleta> mostrar() {
-        return (List<ProductoBoleta>) dataprodboleta.findAll();
+        return dataprodboleta.findAll();
     }
 
     public void delete(int id) {

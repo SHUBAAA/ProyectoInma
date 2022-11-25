@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepoRol extends JpaRepository<Rol, Integer> {
-    // @Query("SELECT r FROM Rol r WHERE r.name = ?1")
-    public Rol findByName(String name);
+
 
 }

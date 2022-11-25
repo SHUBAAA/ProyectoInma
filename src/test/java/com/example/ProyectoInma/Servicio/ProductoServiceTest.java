@@ -23,23 +23,14 @@ import static org.junit.jupiter.api.Assertions.*;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(MethodOrderer.class)
 class ProductoServiceTest {
-    List<Producto> productos;
     @Autowired
     private RepoProducto productoRepositorio;
-    @Before("Before")
-    public void before() {
-        productos = (List<Producto>) productoRepositorio.findAll();
-    }
-    @After("After")
-    public void after() {
-        for (Producto producto : productos)
-            System.out.println(producto.toString());
-    }
+
 
     @ParameterizedTest
     @CsvSource({"CocaCola,1500,Bebida", "Pepsi,1300,Bebida", "Producto3,3000,Cat3", "Producto4,4000,Cat4"})
     @Rollback(false)
-    @Order(1)
+    @Order(2)
     @DisplayName("Test para guardar un producto")
     public void testGuardarProd(String nombre, int precio, String cat) {
         Producto producto = new Producto(nombre, precio, 90, cat);
@@ -49,17 +40,18 @@ class ProductoServiceTest {
         assertNotNull(productoGuardado);
     }
     @Test
-    @Order(2)
+    @Order(1)
     @DisplayName("Test para listar en pantalla los productos")
     public void testListarProd() {
 
-        List<Producto> productos2 = (List<Producto>) productoRepositorio.findAll();
-        assertThat(productos2.size()).isGreaterThan(0);
+        productoRepositorio.save(new Producto("Prueba", 2, 90, "cat"));
+        List<Producto> productos = productoRepositorio.findAll();
+        assertThat(productos.size()).isGreaterThan(0);
 
 
     }
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4})
+    @ValueSource(ints = {2, 3, 4, 5})
     @Rollback(false)
     @Order(3)
     @DisplayName("Test para editar un producto")

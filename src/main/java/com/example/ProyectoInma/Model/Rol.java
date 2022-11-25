@@ -21,10 +21,7 @@ public class Rol {
         this.name = name;
     }
 
-    public Rol(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+
 
     @Override
     public String toString() {

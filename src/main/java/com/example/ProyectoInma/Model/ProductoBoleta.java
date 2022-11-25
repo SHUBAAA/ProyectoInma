@@ -25,8 +25,6 @@ public class ProductoBoleta {
     private int total;
 
 
-
-
     public ProductoBoleta() {
     }
 

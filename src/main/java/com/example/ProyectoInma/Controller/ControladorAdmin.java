@@ -21,12 +21,12 @@ import java.util.Optional;
 public class ControladorAdmin {
 
     @Autowired
-    private UserService service;
+    private UserService Userservice;
 
 
     @GetMapping("/registrar")
     public String showRegistrationForm(Model model) {
-        List<Rol> listRoles = service.listRoles();
+        List<Rol> listRoles = Userservice.listRoles();
         model.addAttribute("user", new User());
         model.addAttribute("listRoles", listRoles);
         return "registrar";
@@ -34,21 +34,21 @@ public class ControladorAdmin {
 
     @PostMapping("/guardar")
     public String saveUser(User user) {
-        service.save(user);
+        Userservice.save(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/admin")
     public String listUsers(Model model) {
-        List<User> listUsers = service.listAll();
+        List<User> listUsers = Userservice.listAll();
         model.addAttribute("listUsers", listUsers);
         return "admin";
     }
 
     @GetMapping("/editaruser/{id}")
     public String editUser(@PathVariable("id") Long id, Model model) {
-        Optional<User> user = service.getID(id);
-        List<Rol> listRoles = service.listRoles();
+        Optional<User> user = Userservice.getID(id);
+        List<Rol> listRoles = Userservice.listRoles();
         model.addAttribute("user", user);
         model.addAttribute("listRoles", listRoles);
         return "modusuario";
@@ -56,7 +56,7 @@ public class ControladorAdmin {
 
     @GetMapping("/eliminaruser/{id}")
     public String delete(@PathVariable Long id) {
-        service.delete(id);
+        Userservice.delete(id);
         return "redirect:/admin";
     }
 }

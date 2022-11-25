@@ -32,8 +32,8 @@ public class ControladorBoleta {
 
 
     @PostMapping("/saveboleta")
-    public String save(@Validated ProductoBoleta p, Model model) {
-        servicioBoleta.save(p);
+    public String save(@Validated ProductoBoleta Productoboleta) {
+        servicioBoleta.save(Productoboleta);
         return "redirect:/caja";
     }
 

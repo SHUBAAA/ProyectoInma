@@ -18,7 +18,7 @@ public class ProductoService {
 
 
     public List<Producto> mostrar() {
-        return (List<Producto>) dataProducto.findAll();
+        return dataProducto.findAll();
     }
 
 
@@ -26,13 +26,10 @@ public class ProductoService {
         return dataProducto.findById(id);
     }
 
-    public Producto getProductoById(int id){
-        return dataProducto.findById(id).get();
-}
 
 
-    public void save(Producto p) {
-        dataProducto.save(p);
+    public void save(Producto producto) {
+        dataProducto.save(producto);
     }
 
 

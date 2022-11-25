@@ -31,22 +31,10 @@ public class ServicioBoletaTest {
     @Autowired
     private RepositorioProductoBoleta repositorioBoleta;
 
-    @Before("Before")
-    public void before() {
-        boletas = (List<ProductoBoleta>) repositorioBoleta.findAll();
-    }
-
-    @After("After")
-    public void after() {
-        for (ProductoBoleta boleta : boletas)
-            System.out.println(boleta.toString());
-    }
-
 
     @ParameterizedTest
     @CsvSource({"CocaCola,1500", "Pepsi,1300", "Producto3,3000", "Producto4,4000"})
     @Rollback(false)
-    @Order(1)
     @DisplayName("Test para guardar un producto en la boleta")
     public void testGuardarProdBol(String nombre, int precio) {
         ProductoBoleta productoBol = new ProductoBoleta( 10, nombre, precio);
@@ -56,7 +44,6 @@ public class ServicioBoletaTest {
         assertNotNull(productoGuardadoBol);
     }
     @Test
-    @Order(2)
     @DisplayName("Test para calcular el total")
     public void testCalcularTotal(){
         int total=0;
@@ -69,7 +56,6 @@ public class ServicioBoletaTest {
     }
     
     @Test
-    @Order(3)
     @DisplayName("Test para listar en pantalla los productos de la boleta")
     public void testListarProdBol() {
         List<ProductoBoleta> productosBol = (List<ProductoBoleta>) repositorioBoleta.findAll();
@@ -81,7 +67,6 @@ public class ServicioBoletaTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4})
     @Rollback(false)
-    @Order(4)
     @DisplayName("Test para eliminar producto de boleta por su id")
     public void testEliminarProdBol(int ids) {
         int id = ids;
@@ -98,7 +83,6 @@ public class ServicioBoletaTest {
     }
 
     @Test
-    @Order(5)
     @DisplayName("Test para saber si la boleta se encuentra vacia")
     public void testMostrarBoletaVacia() {
         List<ProductoBoleta> productosBol = (List<ProductoBoleta>) repositorioBoleta.findAll();

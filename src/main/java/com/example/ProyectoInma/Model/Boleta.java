@@ -18,15 +18,9 @@ public class Boleta {
     @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @Temporal(TemporalType.DATE)
     private Date fecha = new Date(System.currentTimeMillis());
-
     private int valorTotal;
-
-
-    public Boleta() {
-    }
 
 
 

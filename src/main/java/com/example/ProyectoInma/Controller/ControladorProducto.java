@@ -41,8 +41,8 @@ public class ControladorProducto {
 
 
     @PostMapping("/save")
-    public String save(@Validated Producto p, Model model) {
-        productoservice.save(p);
+    public String save(@Validated Producto producto) {
+        productoservice.save(producto);
         return "redirect:/main";
     }
 
