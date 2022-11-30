@@ -1,6 +1,6 @@
 package com.example.ProyectoInma.Controller;
 
-import com.example.ProyectoInma.Model.Boleta;
+
 import com.example.ProyectoInma.Model.Producto;
 import com.example.ProyectoInma.Model.ProductoBoleta;
 import com.example.ProyectoInma.Servicio.ProductoService;

@@ -1,7 +1,7 @@
 package com.example.ProyectoInma.Servicio;
 
 
-import com.example.ProyectoInma.Model.Producto;
+
 import com.example.ProyectoInma.Model.ProductoBoleta;
 import com.example.ProyectoInma.Repository.RepositorioProductoBoleta;
 import org.springframework.beans.factory.annotation.Autowired;

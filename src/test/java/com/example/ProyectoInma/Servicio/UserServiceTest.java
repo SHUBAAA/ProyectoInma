@@ -6,19 +6,17 @@ import com.example.ProyectoInma.Model.User;
 import com.example.ProyectoInma.Repository.RepoRol;
 import com.example.ProyectoInma.Repository.UserRepository;
 
-import org.assertj.core.api.Assertions;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.Rollback;
 
 
@@ -42,7 +40,7 @@ class UserServiceTest {
     @ParameterizedTest
     @CsvSource({"Admin,email1@gmail.com"})
     @Order(1)
-    void UsuarioTieneRol(String nombreRol, String email){
+    void UsuarioTieneRol(String nombreRol, String email) {
         Rol admin = reporol.save(new Rol(nombreRol));
         User user = new User(email, "a", "11.222.333-4", "Manolo", Collections.singletonList(reporol.findById(1).get()));
 

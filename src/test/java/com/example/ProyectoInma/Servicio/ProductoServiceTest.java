@@ -94,7 +94,7 @@ class ProductoServiceTest {
     @Order(5)
     @DisplayName("Test para saber si la lista de productos se encuentra vacia")
     public void testMostrarlistaVacia() {
-        List<Producto> productos = (List<Producto>) productoRepositorio.findAll();
+        List<Producto> productos =  productoRepositorio.findAll();
         assertThat(productos.size()).isEqualTo(0);
     }
 
