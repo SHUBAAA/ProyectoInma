@@ -49,9 +49,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin", "/registrar", "/delete/**", "/edit/**", "/", "/main", "/caja").hasAnyAuthority("ADMIN")
-                .antMatchers("/", "/main").hasAnyAuthority("BODEGA")
-                .antMatchers("/caja").hasAnyAuthority("CAJERO")
+                .antMatchers("/admin", "/registrar", "/delete/**", "/edit/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/", "/main").hasAnyAuthority("BODEGA","ADMIN")
+                .antMatchers("/caja").hasAnyAuthority("CAJERO","ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
