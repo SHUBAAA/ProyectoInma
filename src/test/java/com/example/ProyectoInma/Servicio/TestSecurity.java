@@ -47,13 +47,7 @@ class TestSecurity {
 
 
     @Test
-    public void test() throws Exception {
-
-        mvc.perform(get("/")).andExpect(status().isUnauthorized());
-    }
-
-    @Test
-    @WithMockUser(username = "alice", roles = "user")
+    @WithMockUser(username = "Manolo", roles = "ADMIN")
     void aaaaaaaaa() throws Exception {
         mvc.perform(get("/")).andExpect(status().isOk());
     }
