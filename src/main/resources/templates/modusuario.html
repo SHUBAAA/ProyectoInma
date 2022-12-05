@@ -59,11 +59,12 @@
           </div>
           <div>
             <label class="col-4 col-form-label">Roles: </label>
-            <div class="col-8">
-              <th:block th:each="role: ${listRoles}">
-                <input type="checkbox" th:field="*{roles}"
-                       th:text="${role.name}" th:value="${role.id}" class="m-2"/>
-              </th:block>
+            <div class=>
+              <select  th:field="*{roles}" class="form-control" >
+                <option value="" disabled selected>Clickea para seleccionar rol</option>
+                <option  th:each="role: ${listRoles}" th:value="${role.id}" th:text="${role.name}"></option>
+              </select>
+              <p></p>
             </div>
           </div>
 
